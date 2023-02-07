@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol</title>
+</head>
+<body>
+    <script>
+        //创建Symbol
+        let s = Symbol();
+        let s2 = Symbol('何伟');
+        let s3 = Symbol('何伟');
+        console.log(s2==s3);    //false
+        //Symbol.for()创建
+        let s4 = Symbol.for('浙海大');
+        let s5 = Symbol.for('浙海大');
+        console.log(s4==s5);    //true
+
+        //JS 七种数据类型 USONB     
+        // u undefined
+        // s string symbol
+        // o object
+        // n null number
+        // b boolean
+
+        //  Symbol  的运用
+        
+        //向对象中添加方法 up down  Symbol属性
+        let game = {
+            //······················
+        }
+        //假如说 对象game 内容很大 不确定里面是否有up down 两种方法但是需要往里面添加这两种方法
+        //为了避免覆盖或改写（方法）使用symbol Symbol具有唯一性
+
+        let methods = {
+            up:Symbol(),
+            down: Symbol()
+        }
+
+        game[methods.up] = function(){
+            console.log("上升");
+        }
+        game[methods.down] = function(){
+            console.log("下降");
+        }
+        console.log(game);
+
+        //另一种方法往对象中添加Symbol属性
+
+        let song = {
+            name: "孤勇者",
+            [Symbol('sing')]:function(){console.log("我会唱");},
+            [Symbol('write')]:function(){console.log("我会写");}
+        }
+        console.log(song);
+
+    </script>
+    
+
+</body>
+</html>

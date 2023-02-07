@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Static</title>
+</head>
+<body>
+    <script>
+        function Phone(){
+
+        }
+
+        Phone.name = 'Apple';
+        Phone.call = function(){
+            console.log("打电话");
+        }
+        //实例对象里的属性和函数对象里的属性是不相通的
+        //Phone.name Phone.call 是属于方法Phone里的 这种称为静态成员
+        let huawei = new Phone();
+        //console.log(huawei.name);
+        //huawei.call();
+
+        //实例对象跟函数 的 原型 是想通的
+        Phone.prototype.brand = '苹果';
+        console.log(huawei.brand);
+
+
+        class Computer{
+            //静态属性表
+            static name = '电脑';
+            static play(){
+                console.log("打游戏");
+            }
+        }
+        
+        let lenovo = new Computer();
+        console.log(lenovo.name);
+
+    </script>
+</body>
+</html>

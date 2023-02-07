@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 介绍 初识</title>
+</head>
+<body>
+    <script>
+
+        //ES5
+        function Phone(brand,price){
+            this.brand = brand;
+            this.price = price;
+        }
+        Phone.prototype.call = function(){
+            console.log("打电话");
+        }
+
+        let iPhone = new Phone('苹果',6999);
+        console.log(iPhone);
+        iPhone.call();
+
+
+
+        class Computer{
+            //构造方法 名字不能修改
+            constructor(brand, price){
+                this.brand = brand;
+                this.price = price;
+            }
+            //ES6
+            // 方法必须使用该语法， 不能使用 ES5 的对象完整形式
+            call(){
+                console.log("快打电话");
+            }
+        }
+
+        let lenovo = new Computer("Lenovo",4999);
+        console.log(lenovo);
+        lenovo.call();
+    </script>
+</body>
+</html>

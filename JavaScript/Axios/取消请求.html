@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios创建实例对象发送请求</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.1.2/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">基本使用</h2>
+        <button class="btn btn-primary">发送GET请求</button>
+        <button class="btn btn-warning">取消请求</button>
+    </div>
+    <script>
+        const btns = document.querySelectorAll('button');
+
+        //设置全局变量cancel，用于判断
+        let cancel = null;
+        btns[0].onclick = function(){
+            if(cancel !== null){
+                //再次点击请求按钮 因为上一次没完成那么cancel就没有初始化 遂取消上一次的请求
+                cancel();
+            }
+
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/posts/1',
+                // 1. 添加配置对象的属性
+                cancelToken: new axios.CancelToken(function(c){
+                    // 2.将 c 的值赋值给 cancel
+                    cancel = c;
+                })
+            }).then(response=>{
+                console.log(response);
+                //请求完成 将cancel置为null
+                cancel = null;
+            })
+        }
+        btns[1].onclick = function () {
+                cancel();
+        }
+        // btns[1].addEventListener('click', function(){
+        //     cancel();
+        // })
+    </script>
+</body>
+</html>

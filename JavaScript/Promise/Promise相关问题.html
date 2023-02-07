@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+
+        // 串联多个任务 
+        //let p = new Promise((resolve, rejct)=>{
+        //    setTimeout(()=>{
+        //        resolve('OK');
+        //    },1000)
+        //});
+        //p.then(value=>{
+        //    console.log(value);
+        //    return new Promise((resolve, reject)=>{
+        //        resolve("success");
+        //    })
+        //}).then(value=>{
+        //    console.log(value);
+        //}).then(value=>{
+        //    console.log(value);
+        //});
+//
+//
+        //console.log("------分隔符-------");
+
+
+        //异常穿透
+
+        //let q = new Promise((resolve, reject)=>{
+        //    setTimeout(()=>{
+        //        resolve('OK');
+        //        // reject('Err');
+        //    }, 1000)
+        //});
+        //q.then(value=>{
+        //    // console.log(1);
+        //    throw '失败啦';
+        //}).then(value=>{
+        //    console.log(2);
+        //}).then(value=>{
+        //    console.log(3);
+        //}).catch(reason=>{
+        //    console.warn(reason);
+        //});
+
+
+        // 中断Promise 链条
+            //有且只有一种方式  不改变pending的状态之后的then就不执行
+        let o = new Promise((resolve, reject)=>{
+            setTimeout(() => {
+                resolve('ok');
+            }, 1000);
+        });
+        o.then(value=>{
+            console.log('a');
+            //有且只有一种方式  不改变pending的状态之后的then就不执行
+            return new Promise(()=>{
+                
+            })
+        }).then(value=>{
+            console.log('b');
+        }).then(value=>{
+            console.log('c');
+        }).catch(reason=>{
+            console.warn(reason);
+        })
+    </script>
+</body>
+</html>

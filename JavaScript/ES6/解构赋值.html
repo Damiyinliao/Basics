@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解构赋值</title>
+</head>
+<body>
+    <script>
+        // 1. 数值的解构
+        // const num4 = [11, 22, 33, 44];
+        // let [A, B, C, D] = num4;
+        // console.log(A);
+        // console.log(B);
+        // console.log(C);
+        // console.log(D);
+
+        //2. 对象的解构
+        const hw = {
+            name: '何伟',
+            age: '22',
+            hewei: function(){
+                console.log('写代码');
+            }
+        };
+
+        // 
+        let {name, age, hewei} = hw;
+        console.log(name);
+        console.log(age);
+        console.log(hewei);
+        hewei();
+
+        // let {hewei} = hw;
+        // hewei();
+    </script>
+</body>
+</html>

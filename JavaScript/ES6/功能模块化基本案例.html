@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块化</title>
+</head>
+<body>
+    <!-- <script type="module">
+        //以下是通用的导入方式
+        //引入module_one.js的内容
+        import * as m1 from "./module/module_one.js";
+        import * as m2 from "./module/module_two.js";
+        import * as m3 from "./module/module_three.js";
+        // console.log(m1);
+        // console.log(m2);
+        // console.log(m3);
+        // m3.default.study();
+
+        // 2. 解构赋值形式
+        import {name, study} from "./module/module_one.js";
+        import {name as id, location} from "./module/module_two.js";
+        import {default as module3} from "./module/module_three.js";
+        // console.log(module3);
+
+        //3. 简便形式 智能针对默认暴露
+          import module_3 from "./module/module_three.js";
+          console.log(module_3);
+    </script> -->
+
+    <!-- <script src="./module/app.js" type="module"></script> -->
+
+    <!-- 通常以上写法不完全 ， 需要使用babel来将 ES6+ 语法转化为 ES5 语法 以便兼容那些还没有支持es6语法的平台 
+        1. 安装工具 babel-cli babel-preset-env browserify
+        2. npx babel src/js -d dist/js
+        3. 打包好了之后不能直接使用还需要打包 
+            npx browserify dist/js/app.js -o dist/bundle.js
+    
+    -->
+    <!-- <script src="dist/app.js"></script>  //require is not defined -->
+    <script src="dist/bundle.js"></script>
+
+</body>
+</html>

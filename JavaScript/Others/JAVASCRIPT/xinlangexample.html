@@ -1,0 +1,113 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style-type: none;
+        }
+        
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav {
+            margin: 100px;
+        }
+        .nav ul{
+            display: none;
+            position: absolute;
+            top: 41px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        .nav li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 41px;
+            text-align: center;
+            
+        }
+        .nav>li>a:hover{
+            background-color: #eee;
+        }
+     
+        .nav ul li{
+            border-bottom: 1px solid #FECC5B;
+        }
+    </style>
+ </head>
+ <body>
+    <ul class="nav">
+        <li>
+            <a href="#">微博 </a>
+            <ul>
+                <li>私信</li>
+                <li>评论</li>
+                <li>点赞</li>
+                <li>留言</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">新浪</a>
+            <ul>
+                <li>私信</li>
+                <li>评论</li>
+                <li>点赞</li>
+                <li>留言</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">小红书</a>
+            <ul>
+                <li>私信</li>
+                <li>评论</li>
+                <li>点赞</li>
+                <li>留言</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微信</a>
+            <ul>
+                <li>私信</li>
+                <li>评论</li>
+                <li>点赞</li>
+                <li>留言</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <script>
+        var nav = document.querySelector('.nav');
+        var lis = nav.children;
+        for(var i=0; i<lis.length; i++){
+            // lis[i].onclick = function(){
+                // lis[i].style.display = 'block';
+                // for(var i = 0; i < lis.length; i++){
+                //     lis[i].style.display ='none';
+                // }
+
+                lis[i].onmouseover = function(){
+                    this.children[1].style.display = 'block';
+                }
+                lis[i].onmouseout = function(){
+                    this.children[1].style.display = 'none'
+                }
+            // }
+        }
+    </script>
+ </body>
+ </html> 

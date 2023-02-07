@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flat 与 flatMap</title>
+</head>
+<body>
+    <script>
+        //flat 平
+        //将多维数组转换为低位数组
+        const arr1 = [1,2,3,4,[5,6]];
+        const arr2 = [1,2,3,4,[5,6,[7,8,9]]];
+        console.log(arr1.flat());//[1, 2, 3, 4, 5, 6]
+        //flat() 里面的参数表示为深度
+        console.log(arr2.flat(2));//[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        //flatMap  flat()和map()的结合
+        const arr3 = [1,2,3,4];
+
+        const result1 = arr3.map(item => [item * 10]);
+
+        console.log(result1); //[Array(1), Array(1), Array(1), Array(1)]
+        const result2 = arr3.flatMap(item => [item * 10]);
+        console.log(result2);//[10, 20, 30, 40]
+    </script>
+</body>
+</html>

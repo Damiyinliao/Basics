@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios</title>
+    <script crossorigin='anonymous' src="https://cdn.bootcdn.net/ajax/libs/axios/1.1.2/axios.js"></script>
+</head>
+<body>
+    <button>GET请求</button>
+    <button>POST请求</button>
+    <button>AXIOS</button>
+    <script>
+        const btns = document.querySelectorAll('button');
+        // 配置 baseURL
+        axios.defaults.baseURL = 'http://127.0.0.1:8000';
+        btns[0].onclick = function(){
+            // GET请求
+            axios.get('/axios-server',{
+                //url参数
+                params: {
+                    id:100,
+                    vip:7
+                },
+                //请求头信息
+                headers:{
+                    name:'hewei',
+                    age:23
+                }
+            }).then(value => {
+                console.log(value);
+            });
+        }
+        btns[1].onclick = function(){
+
+            axios.post('/axios-server',
+                {   //请求体
+                    username: 'admin',
+                    password: '123456'
+                },
+                {   //url参数
+                    params: {
+                        id:500,
+                        vip:8
+                },
+                    //请求头参数
+                    headers: {
+                        height: 200,
+                        weight: 200
+                    },
+                   
+                
+                })
+            
+        }
+        btns[2].onclick = function(){
+            axios({
+                //请求方式
+                method: 'POST',
+                //url  
+                url: '/axios-server',
+                //url 参数
+                params:{
+                    vip: 20,
+                    level: 30
+                },
+                //请求头参数
+                headers:{
+                    a: 120,
+                    b: 30
+                },
+                //请求体
+                data:{
+                    username: 'admin',
+                    password: '123456'
+                }
+            }).then(response=>{
+                console.log(response.status);
+                console.log(response.statusText);
+                console.log(response.headers);
+                console.log(response.data);
+            })
+        }
+    </script>
+</body>
+</html>

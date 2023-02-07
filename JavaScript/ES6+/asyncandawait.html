@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sendAJAX()获取接口</title>
+</head>
+<body>
+    <script>
+        function sendAJAX(url){
+
+
+            return new Promise((resolve, reject)=>{
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET',url);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status <300){
+                            //成功了
+                            resolve(xhr.response);
+                        }else{
+                            //失败了
+                            reject(xhr.status);
+                        }
+                    }
+                    
+                }
+
+            })
+
+        }
+        //测试案例
+        //const res = sendAJAX('https://api.uomg.com/api/rand.qinghua?format=json');
+        //console.log(res);
+
+        //Promise then()方法测试
+        //sendAJAX('https://api.uomg.com/api/rand.qinghua?format=json').then(value=>{
+        //    console.log(value);
+        //}, reason=>{
+        //})
+
+        //async await 测试
+        async function main(){
+            //发送请求
+            let joke1 = await sendAJAX('https://api.uomg.com/api/rand.qinghua?format=json');
+            let joke2 = await sendAJAX('https://api.uomg.com/api/rand.qinghua?format=json');
+            let joke3 = await sendAJAX('https://api.uomg.com/api/rand.qinghua?format=json');
+            console.log(joke1);
+        }
+        main();
+    </script>
+</body>
+</html>

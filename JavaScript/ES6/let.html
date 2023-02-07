@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let 的使用</title>
+    <style>
+        .item{
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+            margin-left: 20px;
+            float: left;
+            /* bgc */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>点击改变颜色</h3>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <script>
+        //let：定义变量，替代 var。
+
+        let items = document.querySelectorAll('.item');
+        //修改当前元素的背景
+        for(var i=0; i<items.length; i++){
+
+            items[i].onclick = function(){
+
+                //this.style.background = 'green';
+                items[i].style.background = 'black';
+            }
+        }
+
+        {
+        let a = 'hello';
+        }
+        console.log(a); // 打印结果报错：Uncaught ReferenceError: a is not defined
+        
+        var a = 2;
+        {
+            let a = 3;
+        }
+
+        console.log(a); // 打印结果：2
+        //块级作用域内， 用let 声明的变量，只在局部起作用。
+    </script>
+</body>
+</html>

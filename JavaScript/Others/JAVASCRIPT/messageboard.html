@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .message {
+            list-style: none;
+            height: max-content;
+            overflow: auto;
+        }
+        .textboard{
+            /* float: left; */
+        }
+    </style>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10" class="textboard"></textarea>
+    <button>发布</button>
+    <ul class="message">
+        <!-- <li class="text">
+            
+        </li> -->
+        <!-- <li>123</li> -->
+    </ul>
+    <script>
+          
+        var ul = document.querySelector('ul');  
+        // var txt = document.querySelector('.text');
+        var text = document.querySelector('.textboard');
+        var button = document.querySelector('button');
+        button.onclick = function(){
+            console.log(text.value);
+            // ul.append(li);
+            var li = document.createElement('li');  
+            li.innerHTML = text.value + "<a href='javascript:; '>删除</a>";
+            ul.insertBefore(li,ul.children[0]);
+            var deletenode = document.querySelectorAll('a');
+            for(var i=0;i<deletenode.length; i++){
+                deletenode[i].onclick = function(){
+                    ul.removeChild(this.parentNode);
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

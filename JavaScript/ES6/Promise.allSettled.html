@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise.allSettled</title>
+</head>
+<body>
+    <script>
+        //声明两个Promise对象
+        const p1 = new Promise((resolve, reject)=>{
+               setTimeout(()=>{
+                resolve('商品数据-1')
+               },1000)    
+        })
+        const p2 = new Promise((resolve, reject)=>{
+               setTimeout(()=>{
+                resolve('商品数据-2')
+               },1000)    
+        })
+
+
+        //都是用来做批量异步任务的场景
+
+        //调用 allsettled 可以允许失败结果
+        const result = Promise.allSettled([p1, p2]);
+        //all 要求所有的必须是成功的
+        const res = Promise.all([p1, p2]);
+
+        console.log(res);
+    </script>
+</body>
+</html>

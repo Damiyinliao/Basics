@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise自定义封装</title>
+    <script src="./JS/promise1.js"></script>
+</head>
+<body>
+    <script>
+        // let p = new Promise((resolve, reject)=>{
+            // setTimeout(() => {
+                // resolve('ok123');
+                // reject('failed');
+            // }, 1000);
+            // reject('failed');
+            
+            // throw 'error';
+        // });
+        // console.log(p);
+        //const res = p.then(value=>{
+        //     console.log(value);
+        //    return new Promise((resolve, reject)=>{
+        //        // resolve('成功');
+        //        reject('失败');
+        //    })
+        //    // throw 'error'
+        //}, reason=>{
+        //    // console.warn(reason);
+        //    // throw 'error';
+        //});
+        // p.then(value=>{
+        //      alert(value);
+        // }, reason=>{
+        //     alert(reason);
+        // });
+
+        // let res = p.catch(reason=>{
+        //     console.warn(reason);
+        // })
+
+        //p.then(
+            // value=>{
+            // console.log('a');
+        // }
+        //).then(value=>{
+        //    console.log('b');
+        //}).then(value=>{
+        //    console.log('c');
+        //}).catch(reason=>{
+        //    console.warn(reason);
+        //})
+        // console.log(p);
+
+        ////添加 resolve 方法
+        // let p1 = Promise.resolve('OK');
+        // let p2 = Promise.resolve(new Promise((resolve, reject)=>{
+        //         // resolve('Success');
+        //         reject('Failure');
+        // }));
+        // console.log(p2);
+
+        //添加 reject 方法  Promise.reject()不管传入什么都是rejected
+        // let m1 = Promise.reject('Error');
+        // let m2 = Promise.reject(new Promise((resolve, reject)=>{
+        //    resolve('ok');
+        // }))
+        // console.log(m1);
+        // console.log(m2);
+
+        //添加all()方法   all()里的对象全部成功就返回成功
+        // let a = Promise.resolve('Success!');
+        // // let a1 = Promise.resolve('GOOD!');
+        // let b = Promise.resolve(new Promise((resolve, reject)=>{
+        //    resolve('成功');
+        // }));
+        // let c = new Promise((resolve, reject)=>{
+        //    resolve('No Failure')
+        // })
+        // let d = Promise.all([a, b, c]);
+        // console.log(d);
+
+
+
+        //添加race 方法 race()里面第一个执行的什么结果就返回什么结果
+        // let a = new Promise((resolve, reject)=>{
+        //    setTimeout(() => {
+        //        resolve('成功');
+        //    }, 500);
+        // });
+        // let b = Promise.resolve('GOODJOB!');
+        // let c = Promise.resolve('Success');
+        // let d = Promise.race([a, b, c]);
+        // console.log(d);
+
+
+        //同步异步执行顺序
+
+        // let p1 = new Promise((resolve, reject)=>{
+        //     resolve('OK!');
+        //     console.log(111);
+        // });
+        // p1.then(value=>{
+        //     console.log(222);
+        // }, reason=>{
+
+        // });
+        // console.log(333);  
+        //执行结果 111        333       222
+        //因为then是异步执行的需要放在后面
+        
+    </script>
+</body>
+</html>

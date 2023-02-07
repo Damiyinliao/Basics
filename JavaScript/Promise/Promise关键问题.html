@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise关键问题</title>
+</head>
+<body>
+    <script>
+        // 一. Promise 对象状态改变的方式
+        let p1 = new Promise((resole, reject)=>{
+            // 1. resolve函数 
+            resolve('success');  // peding => fulfilled(resolve)
+            // 2. reject函数
+            reject('failed');   //  pending => rejected
+            //3.抛出错误
+            throw 'wwrong';
+        })
+        console.log(p1);
+
+
+        // 二、 Promise 指定多个回调 都会执行吗？
+                //当 Promise改变为对应状态时都会调用
+        let p2 = new Promise((resolve, reject)=>{
+            resolve('回调成功');
+        });
+        p2.then(value=>{
+            console.log(value);
+        });
+        p2.then(value=>{
+            alert(value);
+        })
+    </script>
+</body>
+</html>

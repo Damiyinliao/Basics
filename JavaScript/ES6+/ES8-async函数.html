@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<body>
+    <script>
+        // async 函数
+        async function fn(){
+            // 返回一个字符串
+            // return '何伟';
+
+            //返回的结果不是一个Promise类型的对象 则这个函数返回的结果是成功的Promise
+            // return;
+            //跑出错误
+            // throw new Error('出错了！');
+            return new Promise((resolve, reject)=>{
+                // resolve('成功的数据');
+                reject("失败的错误");
+            })
+              
+        }
+
+        const res = fn();
+        // console.log(res);
+
+        res.then(value =>{
+            console.log(value);
+        }, reason =>{
+            console.warn(reason);
+        })
+    </script>
+</body>
+</html>

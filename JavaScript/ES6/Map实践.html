@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map 实践</title>
+</head>
+<body>
+    <script>
+        let p = new Map();
+        p.set('name','何伟');
+        p.set('change',function(){
+            console.log("我是何伟！");
+        });
+        let key = {
+            school: "浙江海洋大学"
+        };
+        p.set(key,['食堂','图书馆','教学楼']);
+
+        p.delete('name')
+
+        console.log(p.size);
+
+        //获取
+        console.log(p.get('change'));
+        console.log(p.get(key));
+
+
+        console.log(p);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则扩展 命名捕获分组</title>
+</head>
+<body>
+    <script>
+        //声明一个字符串
+        let str = '<a href="http://www.ntyou.cc">动漫</a>';
+
+        //提取url与标签文本
+        const reg = /<a href="(.*)">(.*)<\/a>/;
+        //执行
+        const res = reg.exec(str);
+        console.log(res);
+
+        let str2 = '<a href="http://www.ntyou.cc">动漫</a>';
+        const reg2 = /<a href="(?<url>.*)">(?<text>.*)<\/a>/;
+        const res2 = reg2.exec(str2);
+        console.log(res2);
+    </script>
+</body>
+</html>

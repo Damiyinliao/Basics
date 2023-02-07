@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初试 Axios</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.1.2/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">基本使用</h2>
+        <button class="btn btn-primary">发送GET请求</button>
+        <button class="btn btn-warning">发送POST请求</button>
+        <button class="btn btn-put">发送PUT请求</button>
+        <button class="btn btn-danger">发送Delete请求</button>
+    </div>
+    <script>
+        const btn_get = document.querySelector('.btn-primary');
+        const btn_post = document.querySelector('.btn-warning');
+        const btn_put = document.querySelector('.btn-put');
+        const btn_delete = document.querySelector('.btn-danger');
+        //// GET 插入
+        //btn_get.onclick = function(){
+        //    console.log(1);
+        //    //发送AJAX请求
+        //    axios({
+        //        //请求类型
+        //        method:'GET',
+        //        url:'http://localhost:3000/posts/1'
+        //        }  
+        //    ).then(response=>{
+        //        console.log(response);
+        //    })
+        //}
+        ////POST 添加
+        //btn_post.addEventListener('click', ()=>{
+        //    console.log(2);
+        //    //发送请求
+        //    axios({
+        //        //请求类型
+        //        method: 'POST',
+        //        url: 'http://localhost:3000/posts',
+        //        data:{
+        //            title: '活着',
+        //            author: '余华'
+        //        }
+        //    }).then(response=>{
+        //        console.log(response);
+        //    })
+        //})
+        ////PUT 修改 更新
+        //btn_put.addEventListener('click', function(){
+        //    axios({
+        //        //修改类型
+        //        method: 'PUT',
+        //        url: 'http://localhost:3000/posts/3',
+        //        data: {
+        //            title: '丰乳肥臀',
+        //            author: '莫言'
+        //        }
+        //    }).then(response=>{
+        //        console.log(response);
+        //    })
+        //})
+        //// DELETE 删除
+        //btn_delete.onclick = function(){
+        //    axios({
+        //        //删除
+        //        method: 'delete',
+        //        url: 'http://localhost:3000/posts/2',
+        //    }).then(response=>{
+        //        console.log(response);
+        //    })
+        //}
+        
+
+
+        //axios其它方式获取请求
+        btn_get.onclick = function(){
+            axios.request({
+                method: 'GET',
+                url:'http://localhost:3000/comments/1'
+            }).then(response=>{
+                console.log(response);
+            })
+        }
+
+        btn_post.addEventListener('click', function(){
+            axios.post(
+                'http://localhost:3000/comments',
+                {
+                    body: " some videos",
+                    postId: 2
+                }
+
+            ).then(response=>{
+                console.log(response);
+            })
+        })
+    </script>
+</body>
+</html>

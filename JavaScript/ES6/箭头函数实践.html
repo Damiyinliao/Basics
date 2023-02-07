@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>=> 函数实践</title>
+    <style>
+        #id{
+            width: 100px;
+            height: 100px;
+            background: #58a;
+        }
+    </style>
+</head>
+<body>
+    <div id="id">
+        <h2>点我</h2>
+    </div>
+    <script>
+        let ad = document.getElementById('id');
+        ad.addEventListener('click',function(){
+            // setTimeout(function(){
+            //     console.log(this); // 当前 setTimeout()里的this指向Window 并不指向 ad    
+            //     // 这是由于setTimeout()调用的代码运行在与所在函数完全分离的执行环境上。这会导致这些代码中包含的 this 关键字会指向 window (或全局)对象。
+            //     this.style.background = 'red';
+            // },2000)
+
+            //使用箭头函数 箭头函数中的this总是指向外层调用者，也就是ad
+            setTimeout(()=>{
+                this.style.background = 'pink';
+            },2000)
+        })
+
+        const arr = [1,3,8,22,63,78];
+        //使用常规方法
+        // const res = arr.filter(function(item){
+        //     if(item%2 === 0){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // });
+        // console.log(res);
+
+        //使用箭头函数
+        //const res = arr.filter(item => {
+        //    if(item%2 === 0){
+        //        return true;
+        //    }else{
+        //        return false;
+        //    }
+        //});
+        //console.log(res);
+
+        //更简略的箭头函数
+        const res = arr.filter(item => item % 2 ===0);
+        console.log(res);
+
+
+        //总结：①箭头函数适合与this无关的回调， 定时器， 数组的方法回调
+        //箭头函数不适合与this有关的回调， 实践回调， 对象的方法
+
+
+        {
+            name: '何伟';
+            getName: () => {
+                return this.name;
+            }
+            let res = getName();
+            console.log(res);
+        }
+        
+    </script>
+</body>
+</html>

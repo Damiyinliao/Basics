@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展运算符</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // ... 扩展运算符能将数组转换为逗号分割的 参数序列
+        // 声明一个数组 ...
+        const fruits = ['梨子','苹果','香蕉'];
+        // => '梨子','苹果','香蕉'
+
+        //声明一个函数
+        function spilt(){
+            console.log(arguments);
+        }
+
+        spilt(...fruits); // spilt('梨子','苹果','香蕉')
+
+
+
+        //应用
+
+        // 1. 数组的合并 
+        const animals = ['猩猩','猴子','金丝猴'];
+        const plants = ['水仙花','仙人掌','多肉'];
+        //一般用concat方法拼接
+        const combo = animals.concat(plants);
+        //扩展运算符
+        const combo1 = [...animals,...plants];
+        console.log(combo);
+        console.log(combo1);
+
+
+        // 2. 数组的克隆
+        const letter = ['A','B','C'];
+        const letters = [...letter];
+        console.log(letters);
+
+
+        // 3. 将伪数组转为真正的数组
+        const lis = document.querySelectorAll('li');
+        const liArr = [...lis];
+        console.log(liArr);
+    </script>
+</body>
+</html>

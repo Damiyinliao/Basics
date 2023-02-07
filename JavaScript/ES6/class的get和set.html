@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set get</title>
+</head>
+<body>
+    <script>
+        //get 和 set
+        class Phone{
+            get price(){
+                console.log("价格属性");
+                return 'jiage'
+            }
+            set price(num){
+                console.log('jiage');
+            }
+        }
+
+        //实例化对象
+        let s = new Phone();
+        //走get
+        // console.log(s.price);
+
+        //走set
+        s.price = 'free';
+    </script>
+</body>
+</html>

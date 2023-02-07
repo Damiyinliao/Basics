@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matchAll</title>
+</head>
+<body>
+    <script>
+        let str = `
+        <ul>
+            <li>
+                <a>爱尔兰人</a>     
+                <p>上映时间：2019-07-01</p>
+            </li>
+            <li>
+                <a>白日梦想家</a>
+                <p>上映时间：2015-08-23</p>
+            </li>
+        </ul>`;
+
+        //声明正则
+        const reg = /<li>.*?<a>(.*?)<\/a>.*?<p>(.*?)<\/p>/sg;
+
+        //调用方法
+        const result = str.matchAll(reg);
+
+        //以前方法
+       //for(let v of result){
+       //    console.log(v);
+       //}
+        //从页面里面提取数据非常方便
+       const arr = [...result];
+       console.log(arr);
+    </script>
+</body>
+</html>

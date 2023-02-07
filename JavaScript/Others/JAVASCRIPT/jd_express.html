@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .search{
+            margin: 50px auto;
+            /* border: 1px solid #000; */
+            height: 100px;
+            text-align:center;
+            vertical-align:middle;
+        }
+        .con{
+            margin: 0 auto;
+            border: 1px solid #000;
+            height: 20px;
+            width: 180px;
+            display: none;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="search">
+        <div class="con"></div>
+        <input type="text" class="jd_input">
+    </div>
+    <script>
+        var con = document.querySelector('.con');
+        var jd_input = document.querySelector('.jd_input');
+        jd_input.addEventListener('keyup',function(){
+            if(this.value == ''){
+                con.style.display = 'none';
+            }else{
+                con.style.display = 'block';
+                con.innerHTML = this.value;
+            }
+        })
+    </script>
+</body>
+</html>

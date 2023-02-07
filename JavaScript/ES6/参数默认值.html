@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+           //  ES 允许给函数参数赋值初始值
+           //   1. 形参初始值 具有默认值的参数， 一般位置要靠后
+           function add(a,b,c=1){
+            return a+b+c;
+           }
+           let res = add(1,2)
+           console.log(res);  // 4  c默认为1
+
+           function add1(a,b=2,c){
+            return a+b+c;
+           }
+           let res1 = add1(1,2);
+           console.log(res1); //NaN C没有被赋值加起来为NaN
+           //所以，一般函数默认参数值放在后面 放在中间没有默认值
+
+
+           // 2. 与解构赋值结合
+           function connect({host="127.0.0.1", username, password, port}){
+                console.log(host);
+                console.log(username);
+                console.log(password);
+                console.log(port);
+           }
+
+           connect({
+            // host: '127.0.0.1',
+            username: 'port',
+            password: 'root',
+            port: 3306
+           })
+    </script>
+
+</body>
+</html>

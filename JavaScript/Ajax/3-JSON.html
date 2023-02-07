@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON TEST</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 300px;
+            border: 3px solid #392de1;
+        }
+    </style>
+</head>
+<body>
+    <div id="result">
+
+    </div>
+    <script>
+        var res = document.getElementById('result');
+        window.onkeydown = function(){
+            const xhr = new XMLHttpRequest();
+            //设置响应体的数据类型
+            xhr.responseType = 'JSON';
+            xhr.open('GET','http://127.0.0.1:8000/json-server');
+            //发送
+            xhr.send();
+            //事件绑定
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        //手动对数据转换
+                        let data = JSON.parse(xhr.response);
+                        console.log(data);
+                        res.innerHTML = data.name;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

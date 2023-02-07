@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP</title>
+    <style>
+        #res{
+            width: 300px;
+            height: 200px;
+            border: 3px solid #598;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button>
+        请求链接
+    </button> -->
+    <div id="res"></div>
+    <script>
+        // var btn = document.querySelector('button');
+        // btn.addEventListener('click',function(){
+        //     const x = XMLHttpRequest();
+        // })
+
+        function handle(data){
+            //获取res元素
+            const res = document.getElementById('res');
+            res.innerHTML = data.name;
+        }
+    </script>
+    <script src="http://127.0.0.1:9000/jsonp-server"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>includes</title>
+</head>
+<body>
+    <script>
+
+        //includes 
+        const name = ['何伟','郭杰铭','池邦德','陈康宁'];
+
+        //判断
+        console.log(name.includes('何伟')); //true
+        console.log(name.includes('金明')); //false
+
+        //与indexOf()的区别
+        //includes() 用于判断字符串是否包含指定的字符串。返回true/false
+        //indexOf()  可返回某个指定的字符串值在字符串中首次出现的位置,没有则-1
+
+        console.log(name.indexOf('金铭'));
+        console.log(name.indexOf('陈康宁'));
+
+        // **  类似于 Math.pow()
+        console.log(2 ** 10);
+        console.log(Math.pow(2,10));
+    </script>
+</body>
+</html>

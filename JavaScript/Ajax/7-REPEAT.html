@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复请求</title>
+</head>
+<body>
+    <button>
+        发送请求
+    </button>
+    <script>
+        var btn = document.querySelector('button');
+        let xhr = null;
+        let isSending = false;  //是否正在发送AJAX请求
+        btn.onclick = function(){
+            if(isSending) xhr.abort();
+            xhr = new XMLHttpRequest();
+            isSending = true;
+            xhr.open("GET",'http://127.0.0.1:8000/delay');
+            xhr.send();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){    //4代表已经发送完成了 如果恰好等于4 那就表示可以继续发送请求 将isSending置为false
+                    isSending = false;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

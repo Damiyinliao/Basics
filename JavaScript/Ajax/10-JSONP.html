@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP跨域实践</title>
+</head>
+<body>
+    用户名:<input type="text">
+    <!-- 当失去焦点检测该用户名是否已经存在 由p标签来提示是否已经存在 -->
+    <p></p>
+
+    <script>
+        const input = document.querySelector('input');
+        const p = document.querySelector('p');
+
+        //声明handle函数
+        function handle(data){
+            input.style.border = 'solid 3px red';
+            //修改p标签警示文本
+            p.innerHTML = data.msg;
+        }
+
+
+        //绑定事件
+        input.onblur = function(){
+            //获取用户的输入值
+            let username = this.value;
+
+            //创建script标签
+            const script = document.createElement('script');
+            //设置script的属性
+            script.src = 'http://127.0.0.1:8000/jsonp-server';
+            //将script插入到文本中
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

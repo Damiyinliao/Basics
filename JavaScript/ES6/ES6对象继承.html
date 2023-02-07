@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 对象继承</title>
+</head>
+<body>
+    <script>
+        class Phone{
+            constructor(brand, price){
+                this.brand = brand;
+                this.price = price;
+            }
+
+            call(){
+                console.log("打电话");
+            }
+        }
+
+        class SmartPhone extends Phone{
+            constructor(brand, price, color, size){
+                super(brand, price);
+                this.color = color;
+                this.size = size;
+
+            }
+            takePhoto(){
+                console.log("拍照");
+            }
+            playGames(){
+                console.log("打游戏");
+            }
+            //方法重写
+            call(){
+                console.log("我可以快速的打电话");
+            }
+        }
+
+        const vivo = new SmartPhone("维沃手机", 8999, "黑色", "6.8inch");
+        console.log(vivo);
+        vivo.call();
+        vivo.takePhoto();
+        vivo.playGames();
+    </script>
+</body>
+</html>

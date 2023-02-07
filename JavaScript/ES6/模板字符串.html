@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板字符串</title>
+</head>
+<body>
+    <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+    <script>
+        //let str = `我是一个字符串！`;
+        //console.log(str,typeof str);
+
+        //2. 内容中可以直接出现换行符  如果使用'' 换行的时候需要引引加加
+        let str = `<ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>`
+        console.log(str);
+
+        //3.变量拼接
+        let str1 = '郭杰明';
+        //固定格式 ${}
+        let str2 = `${str1}是我心目中的神`;
+        console.log(str2);
+    </script>
+</body>
+</html>

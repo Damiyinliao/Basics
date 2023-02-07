@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象方法扩展</title>
+</head>
+<body>
+    <script>
+         // 1. Object.is 判断两个值是否完全相等
+         console.log(Object.is(120, 120)); //true
+         console.log(Object.is(NaN, NaN));  //true
+         console.log(NaN === NaN);          //false
+
+         //2. Object.assign 对象的合并
+         // 常用来配置合并 很方便
+         const config1 = {
+             host:'local',
+             port:3306,
+             name:'root',
+             password:'password'
+
+         }
+         const config2 = {
+             host:'localhost',
+             port:3307,
+             name:'root1',
+             password:'password',
+            test:'name'
+         }
+
+         console.log(Object.assign(config1, config2));
+
+         //3. Object.setPrototypeOf 设置原型对象 Object.getPrototypeof
+         const school = {
+            name: '何伟',
+            
+         }
+         const cities = {
+            name: ['北京','上海','广州','深圳']
+         }
+
+         Object.setPrototypeOf(school, cities);
+         console.log(Object.getPrototypeOf(school));
+         console.log(school);
+    </script>
+</body>
+</html> 

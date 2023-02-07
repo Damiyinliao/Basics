@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象展开</title>
+</head>
+<body>
+<!-- 
+    Rest 参数与spread扩展运算符在ES6中已经引入， 不过ES6中指针对于数组，
+    在ES9中为对象提供了像数组一样的rest 参数和扩展运算符
+     -->
+     <script>
+        const s1 = {
+            name: "浙江海洋大学"
+        }
+        const s2 = {
+            city: ['宁波','舟山']
+        }
+        const s3 = {
+            age: 54
+        }
+        const s4 = {
+            change: function(){
+                console.log('copy it');
+            }
+        }
+        const union = {...s1, ...s2, ...s3, ...s4};
+        console.log(union); //{name: '浙江海洋大学', city: Array(2), age: 54, change: ƒ}
+
+        function connect({host, port, ...user}){
+            console.log(host);
+            console.log(port);
+            console.log(user);
+        }
+
+        connect({
+            host: '127.0.0.1',
+            port: 3306,
+            username: 'root',
+            password: '123456',
+            type: 'client'
+        });
+     </script>
+</body>
+</html>

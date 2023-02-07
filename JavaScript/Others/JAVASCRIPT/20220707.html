@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* *{
+            margin: 0;
+            padding: 0;
+        } */
+/* 
+        input {
+            color:#999;
+            font-size: 25px;
+        }
+        .first {
+            background-color: blue;
+            color: #fff;
+            margin-top:50px;
+        }
+        .change {
+            background-color: black;
+            font-size: 25px;
+            color:#fff;
+            margin-top:100px;
+        } */
+
+        
+        /* .message {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            background: url(images/mess.png) no-repeat left center;
+            padding-left: 20px;
+        }
+        .wrong {
+            color: red;
+            background-image: url(images/wrong.png) ;
+        } 
+        .right{
+            color:green;
+        }     */
+       /* div{
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            position: absolute;
+       } */
+       /* .kebab{
+        border: 1px solid #000;
+       } */
+    </style>
+    <script>
+        // function Star(name,sex,age){
+        //     this.name = name;
+        //     this.sex = sex;
+        //     this.age = age;
+        //     this.sing = function(song){
+        //         console.log(song);
+        //     }
+        // }
+        // var ldh = new Star('刘德华','男','18');
+        // console.log(ldh['name']);
+        // ldh.sing('冰雨');
+        // console.log(Math.round(-1.9));
+
+
+        // var Mymath = {
+        //     PI: 3.1415926,
+        //     max: function(){
+        //         var max = arguments[0];
+        //         for(var i = 0; i<arguments.length; i++ ){
+        //             if(arguments[i]>max){
+        //                 max = arguments[i];
+        //             }
+        //         }
+        //         return max;
+        //     },
+        //     min: function(){
+
+        //     }
+        // }
+
+        // var date = new Date();
+        // console.log(date.getMinutes());
+        // function getTime(){
+        //     var time = new Date();
+        //     var h = time.getHours(); 
+        //     var m = time.getMinutes();
+        //     var s = time.getSeconds();
+        //     return h + ':' + m + ':' + s;
+        // }
+        // console.log(getTime());
+
+        // var date = new Date();
+        // console.log(date.getTime());
+        // console.log(date.valueOf());
+        // var date1 = +new Date();
+        // console.log(date1)
+        // console.log(Date.now());
+
+        // var str = "oabjsooabjjnsnao";
+        // var index = str.indexOf('o');
+        // while(index !== -1){
+        //     console.log(index);
+        //     index = str.indexOf('o',index+1);
+        // }
+
+
+    </script>
+
+</head>
+
+<body>
+    <!-- <div class="first">文本</div> -->
+   <!-- <div class="box">
+        <label for="">
+            <img src="images/close.png" alt="" id="eye">
+        </label>
+        <input type="password" name="" id="pwd">
+   </div> -->
+   <!-- <input type="text" value="手机"> -->
+
+   <!-- <div class="register">
+    <input type="password" class="ipt">
+    <p class="message">请输入6~16位密码</p>
+   </div> -->
+   <!-- <div class="light">
+        <input type="button" value="开关灯">
+   </div> -->
+      <!-- <table>
+        <thead>
+            <tr class="kebab">
+                <th>全选<input type="checkbox" id="checkall"></th>
+                <th>品牌一</th>
+                <th>品牌二</th>
+                <th>品牌三</th>
+            </tr>
+        </thead>
+        <tbody id="tbitem">
+            <tr class="kebab">
+                <td>选项一<input type="checkbox"></td>
+                <td>联想</td>
+                <td>索尼</td>
+                <td>富士</td>
+            </tr>
+            <tr class="kebab">
+                <td>选项二<input type="checkbox"></td>
+                <td>联想1</td>
+                <td>索尼1</td>
+                <td>富士1</td>
+            </tr>
+            <tr class="kebab">
+                <td>选项三<input type="checkbox"></td>
+                <td>联想2</td>
+                <td>索尼2</td>
+                <td>富士2</td>
+            </tr>
+        </tbody>
+      </table> -->
+
+   <script>
+        var checkall = document.getElementById('checkall');
+        var tb_items = document.getElementById('tbitem').getElementsByTagName('input');
+        checkall.onclick = function(){
+            for(var i=0; i<tb_items.length; i++){
+                tb_items[i].checked = this.checked;
+            }
+            
+        }
+
+        for(var i = 0; i<tb_items.length; i++){
+
+            tb_items[i].onclick = function(){
+                var flag = true;
+                for(var i=0; i<tb_items.length; i++){
+                    if(!tb_items[i].checked){
+                         flag = false;
+                    }
+                }
+                
+                checkall.checked = flag;
+            }
+            
+        }
+
+        // var trs = document.querySelector('tbody').querySelectorAll('tr')
+        // for(var i = 0; i < trs.length; i++){
+        //     trs[i].onmouseover = function(){
+        //         console.log(11);
+        //     }
+        // }
+        // var light = document.querySelector('input');
+        // var div1 = document.querySelector('div'); 
+        // var flag = 0;
+        // light.onclick = function(){
+             
+        //     if(flag===0){
+        //         div1.style.background = '#000';
+        //         flag = 1;
+        //     }else{
+        //         div1.style.background = '#fff';
+        //         flag = 0;
+        //     }
+                
+        // }
+
+        // var ipt = document.querySelector('.ipt');
+        // var message = document.querySelector('.message');
+  
+        // ipt.onblur = function(){
+        //     if(this.value.length < 6 || this.value.length > 16){
+        //         message.className = 'message wrong';
+        //         message.innerHTML= '你输入的位数不对要求6~16位'
+        //     }else{
+        //         message.className = 'message right'
+        //         message.innerHTML = '你输入正确了'
+        //     }
+        // }
+        // var test = document.querySelector('div');
+        // test.onclick = function(){
+        //     this.className = 'first change';
+        // }
+        // var eye = document.getElementById('eye');
+        // var pwd = document.getElementById('pwd');
+
+        // var flag = 0;
+        // eye.onclick = function(){
+        //     if(flag ==0 ){
+        //         pwd.type = 'text';
+        //         eye.src = 'image/open.png'
+        //         flag = 1;
+
+        //     }else{
+        //         pwd.type = 'password';
+        //         eye.src = 'images/close.png';
+        //         flag = 0;
+        //     }
+        // }
+        // var text = document.querySelector('input');
+        // text.onfocus = function(){
+        //     console.log('得到了焦点');
+        //     if(this.value === '手机'){
+        //         this.value = '';
+        //     }
+        //     this.style.color = '#333';
+        // }
+        // text.onblur = function(){
+        //     console.log('失去了焦点');
+        //     if(this.value === ''){
+        //         this.value = '手机';
+        //     }
+        //     this.style.color = '#999';
+        // }
+
+
+
+
+   </script>
+</body>
+
+</html>

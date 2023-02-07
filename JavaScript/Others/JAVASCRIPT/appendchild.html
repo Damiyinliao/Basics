@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>456</li>
+    </ul>
+    <script>
+        // 创建结点
+        var li = document.createElement('li');
+        // 获取父节点
+        var ul = document.querySelector('ul');
+        // 追加结点
+        ul.appendChild(li);
+
+        // 创建结点
+        var li2 = document.createElement('li');
+        // 在第一个子节点前插入一个节点
+        ul.insertBefore(li2,ul.children[0]);
+    </script>
+</body>
+</html>

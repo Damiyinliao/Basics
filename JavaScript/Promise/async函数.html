@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async函数</title>
+</head>
+<body>
+    <script>
+        async function main(){
+            // 1. 如果返回的是一个非Promise类型的数据   PromiseState就是fulfilled
+            // PromiseResult 就是返回的值
+            // return 520;
+
+            // 2. 返回的是Promise对象 成功就成功 失败就失败
+
+            // return new Promise((resolve, reject)=>{
+                // resolve('ok');
+                // reject('no');
+            // })
+
+            //抛出异常
+            throw 'error';
+        }
+        let result = main();
+        console.log(result);
+
+
+        //async 与 then 方法 类似 不需要调用then 就可获得对应的结果
+    </script>
+</body>
+</html>

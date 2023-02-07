@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器iterator</title>
+</head>
+<body>
+    <script>
+        //const fruits = ["香蕉","苹果","橘子","柚子"]
+        ////使用for···of···遍历数组
+        //for(let v of fruits){
+        //    console.log(v);
+        //}
+        //for(let v in fruits){
+        //    console.log(v);
+        //}
+//
+//
+//
+        //const banji = {
+        //    name: "火箭一班",
+        //    stus: [
+        //        '小明',
+        //        '小娟',
+        //        '小碟',
+        //        '小伟'
+        //    ],
+        //    [Symbol.iterator]:function(){
+        //        let index = 0;
+        //        let _this = this;
+        //        return {
+        //            next: function(){
+        //                if(index < _this.stus.length){
+        //                    const res = {value: _this.stus[index], done:false}
+        //                    index++;
+        //                    return res;
+        //                }else{
+        //                    return {value: undefined, done:true};
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+//
+//
+        //for(let v of banji){
+        //    console.log(v);
+        //}
+//
+//
+//
+        ////生成器其实就是一个特殊的函数
+        ////异步编程 纯回调函数 
+        ////函数代码的分隔符
+        //function * gen(){
+        //    // console.log(111);
+        //    yield '一一一';
+        //    // console.log(222);
+        //    yield '二二二';
+        //    // console.log(333);
+        //    yield '三三三';
+        //    // console.log(444);
+        //}
+//
+        //
+        //let iterator = gen();
+        //iterator.next();
+        //console.log(iterator.next);
+        //console.log(iterator.next);
+        //console.log(iterator.next);
+        //console.log(iterator.next);
+//
+//
+        //for(let v of gen()){
+        //    console.log(v);
+        //}
+
+        //异步编程 文件操作 网络操作(AJAX,request) 数据库操作
+        //1s 后控制台输出 111 2s后输出 222 3s后输出333
+        // 回调地狱
+        // setTimeout(()=>{
+            // console.log(111);
+            // setTimeout(()=>{
+                // console.log(222);
+                // setTimeout(()=>{
+                    // console.log(333);
+// 
+                // },3000)
+            // },2000)
+        // },1000)
+
+
+
+
+
+
+        function one(){
+            setTimeout(() => {
+                console.log(111);
+                iterator.next();
+            }, 1000);
+        }
+        function two(){
+            setTimeout(() => {
+                console.log(222);
+                iterator.next();
+            }, 2000);
+        }
+        function three(){
+            setTimeout(() => {
+                console.log(333);
+            }, 3000);
+        }
+
+        //用生成器函数实现
+         function * gen(){
+            yield one();
+            yield two();
+            yield three()
+         }
+
+         let iterator = gen();
+         iterator.next();
+    </script>
+</body>
+</html>

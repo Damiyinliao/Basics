@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>then方法返回结果的状态</title>
+</head>
+<body>
+    <script>
+        let p = new Promise((reslove,reject)=>{
+            setTimeout(() => {
+                reslove("成功了");
+                // reject("失败了");
+            }, 1000);
+        })
+
+
+        //调用 then 方法 then 方法的返回结果是Promise对象， 对象状态由回调函数的执行结果决定
+        //1。如果回调函数中返回的结果是非 Promise 类型的属性， 状态未成功， 返回值为对象的成功的值
+        const res = p.then(value=>{
+            //console.log(value);
+            ////1. 非 promise 类型的属性
+            //return 'nb';
+            //
+            ////2. 是promise对象
+            //return new Promise((reslove,reject){
+            //    reslove('ok');
+            //    reject('error');
+            //})
+
+            //3. 抛出错误
+            throw new Error('出错啦！');
+            throw '出错啦！';
+        }, reason=>{
+            console.warn(reason);
+        });
+        
+
+
+        // 链式调用  可以杜绝回调地狱
+        p.then(value=>{
+
+        }).then(value=>{
+
+        });
+        
+        
+        console.log(res);
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 620px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        .header{
+             height: 150px;
+             width: 1200px;
+             background-color: blue;
+             margin: 20px auto;
+        }
+        .banner{
+            height: 500px;
+            width: 1200px;
+            background-color: red;
+            margin: 20px auto;
+        }
+        .main{
+            height: 700px;
+            width: 1200px;
+            background-color: green;
+            margin: 20px auto;
+        }
+        .goback{
+            position: absolute;
+            /* margin: 0; */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-bar">
+        <span class="goback"><a href="javascript:;">返回顶部</a></span>
+    </div>
+    <div class="header">头部</div>
+    <div class="banner">栏目</div>
+    <div class="main">主体</div>
+    <script>
+        var sliderbar = document.querySelector('.slider-bar');
+
+        
+        var banner = document.querySelector('.banner');
+        var bannerTop = banner.offsetTop;
+
+        var sliderbarTop = sliderbar.offsetTop - bannerTop;
+
+        var main = document.querySelector('.main');
+        var mainTop = main.offsetTop;
+        var goback = document.querySelector('.goback')
+        document.addEventListener('scroll',function(){
+            // console.log(window.pageYOffset);
+            console.log(sliderbarTop);
+            if(window.pageYOffset >= bannerTop){
+                sliderbar.style.position = 'fixed';
+                sliderbar.style.top = sliderbarTop + 'px';
+            }else{
+                sliderbar.style.position = 'absolute'
+                sliderbar.style.top = '300px';
+            }
+
+            if(window.pageYOffset >= mainTop){
+                goback.style.display = 'block';
+            }else{
+                goback.style.display = 'none';
+            }
+        })
+    </script>
+</body>
+</html>
