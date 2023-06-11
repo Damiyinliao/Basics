@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定class样式</title>
+    <script src="../vue.js"></script>
+    <style>
+        .basic{
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .box-color1{
+           background-color: rgb(184, 151, 151); 
+        }
+        .box-color2{
+            background-color: rgb(103, 176, 168);
+        }
+        .box-color3{
+            background-color: rgb(164, 109, 103);
+        }
+        .box_radius{
+            border-radius: 30px;
+        }
+        .box_font{
+            font-weight: bold;
+            color: red;
+        }
+        .box_shadow{
+            box-shadow:9px 5px 5px #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        绑定样式：
+            1.class样式
+                写法：class="xxx" xxx可以使字符串、对象、数组。
+                字符串写法适用于 类名不确定，要动态获取。
+                对象写法适用于：要绑定多个样式，个数不确定，名字也不确定
+                数组写法适用于：要绑定多个样式，个数确定，名字也确定
+            2.style样式
+                :style="{fontSize: xxx}" 其中xxx是动态值
+                :style="[a,b]"其中a，b是样式对象
+     -->
+    <div id="root">
+        <!-- 绑定class样式--字符串写法，适用于：样式的类名不确定，需要动态指定 -->
+        <div class="basic box-color1" :class="mood" @click="changeMood">盒子一</div>
+        <!-- 绑定class样式--数组写法，适用于：要绑定的样式个数不确定，名字也不确定 -->
+        <div class="basic box-color2" :class="classArr">盒子二</div>
+        <!-- 绑定class样式--对象写法，适用于：要绑定的样式个数确定、名字也确定。但要动态决定用不用 -->
+        <div class="basic" :class="classObj">盒子三</div>
+        <div class="basic" :style="styleObj">盒子四</div>
+        <div class="basic" :style="styleArr">盒子五</div>
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                mood:'box_shadow',
+                classArr:['box_radius', 'box_font', 'box_shadow'],
+                classObj:{
+                    box_radius: true,
+                    box_font: true,
+                    box_shadow: true
+                },
+                styleObj:{
+                    fontSize:'40px',
+                    color: 'purple'
+                },
+                styleObj1:{
+                    backgroundColor:'orange'
+                },
+                styleArr:[
+                    {
+                        fontSize: '50px',
+                        color:'grey'
+                    },{
+                        backgroundColor:'blue'
+                    }
+                ]
+            },
+            methods:{
+                changeMood(){
+                    this.mood = 'box_radius'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

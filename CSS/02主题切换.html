@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主题切换</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        :root {
+            --bg-color: #fff;
+            --button-color: #efefef;
+            --text-color: #606060;
+        }
+        html.dark {
+            --bg-color: #000;
+            --button-color: #808080;
+            --text-color: #fff;
+        }
+        html, body {
+            display: grid;
+            place-items: center;
+            align-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        button {
+            border: 0;
+            border-radius: 10px;
+            background-color: var(--button-color);
+            color: var(--text-color);
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        p {
+            font-weight: 600;
+            font-size: 30px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <button id="dark" onclick="changeTheme('dark')">夜间模式</button>
+    <button id="light" onclick="changeTheme('light')">白天模式</button>
+    <script>
+        const p = document.querySelector('p');
+        let currentTheme = '';
+        const changeTheme = (value) =>{
+            if(value === currentTheme) return;
+            currentTheme = value;
+            document.documentElement.setAttribute('class', value);
+            p.innerText = value === 'dark' ? '当前为夜间模式' : '当前为白天模式';
+        }
+        changeTheme('light');
+    </script>
+</body>
+</html>

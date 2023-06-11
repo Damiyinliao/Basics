@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.set()的使用</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!-- 
+        Vue.set()  的作用对象不能是Vue实例 或者 Vue实例的跟数据对象 
+     -->
+    <div id="root">
+        <h2>schoolname:{{name}}</h2>
+        <h2>schooladdress:{{address}}</h2>
+        <br>
+        <h2>schoolinformation</h2>
+        <button @click="addSex">add a sex information the default is man</button>
+        <h3>name:{{student.name}}</h3>
+        <h3 v-if="student.sex">sex:{{student.sex}}</h3>
+        <h3>age:real{{student.age.rAge}},false:{{student.age.rAge}}</h3>
+        <br>
+        <h2>Friends</h2>
+        <ul>
+            <li v-for="(p, index) in student.friends" :key="index">
+                {{p.name}}--{{p.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data:{
+                name: '何伟',
+                address: '海大南路一号',
+                student:{
+                    name:'tom',
+                    age:{
+                        rAge:40,
+                        sAge:29
+                    },
+                    friends:[
+                        {name:'gjm',age:22},
+                        {name:'cbd',age:21}
+                    ]
+                }
+            },
+            methods:{
+                addSex(){
+                    Vue.set(this.student, 'sex', '男')
+                }
+            }
+        })  
+    </script>
+</body>
+</html>

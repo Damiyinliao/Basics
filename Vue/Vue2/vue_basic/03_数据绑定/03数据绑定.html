@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <script src="../vue.js"></script>
+    <style>
+        .btndiv{
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Vue中有2种数据绑定的方式
+            1.单向绑定（v-bind）：数据只能从data流向页面。
+            2.双向绑定（v-model)：数据不仅能从data流向页面，还可以从页面流向data。
+                备注：
+                    1.双向绑定一般都应用在表单元素上（如input、select等）
+                    2.v-model:value 可以简写为v-model，因为v-model默认收集的就是value值。
+     -->
+    <div id="root">
+
+        <!-- 单向绑定<input type="text" v-bind:value="name"><br/>
+        双向绑定<input type="text" v-model:value="name"> -->
+        <!-- 简写 -->
+        单向绑定<input type="text" :value="name"><br/>
+        双向绑定<input type="text" v-model="name">
+        <hr>
+        密码框<input :type="type">
+        邮箱框
+        <!-- 如下代码错误 因为v-model只能应用在表单类元素（输入类元素） -->
+        <!-- <h2 v-model:x="name">你好</h2> -->
+
+        <div class="btndiv" @click="changeEyeState" >
+            
+        </div>
+        <input type="password" v-if="type" placeholder="密码">
+        <input type="text" v-else placeholder="文本">
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data:{
+                type:true,
+                name: '拼多多123',
+                type:'password'
+            },
+            methods: {
+                changeEyeState(){
+                    this.type = !this.type
+                }
+            },
+        })
+    </script>
+</body>
+</html>

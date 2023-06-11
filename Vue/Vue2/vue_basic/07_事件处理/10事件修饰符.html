@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="../vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .box1{
+            padding: 20px;
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+        .box2{
+            
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        .list{
+            height: 120px;
+            width: 200px;
+            border: 1px solid black;
+            overflow: auto;
+        }
+        .list li{
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Vue中的时间修饰符：
+            1.prevent：阻止默认事件（常用）；
+            2.stop：阻止事件冒泡（常用）；
+            3.once：事件只触发一次（常用）
+            4.capture：使用时间的捕获模式
+            5.self：只有event.target是当前操作的元素时才触发事件；
+            6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
+     -->
+    <div id="root">
+        <!-- 阻止默认事件（常用） -->
+        <a href="www.jd.com" @click.prevent = "showInfo">点击1</a>
+        <!-- 阻止事件冒泡（常用） -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+        </div>
+        <!-- capture：使用时间的捕获模式 无capture先2后1 冒泡时间 加上Capture变成捕获时间-->
+        <div class="box1" @click.Capture="showMsg(1)">
+            <div class="box2" @click="showMsg(2)"></div>
+        </div>
+        <!-- self：只有event.target是当前操作的元素时才触发事件 未加self 事件冒泡 加上self，未被操作不触发事件-->
+        <div class="demo1" @click.self="showInfo">
+            <button @click.self="showInfo">点击该事件</button>
+        </div>
+        <!-- passive：事件的默认行为立即执行，无需等待事件回调执行完毕； -->
+        <!-- scroll是给滚动条或滚动轮加的事件 -->
+        <!-- wheel是专门给滚动轮添加的事件 -->
+        <!-- 当含有回调函数时，会先执行回调函数再去使滚动条滚动，如果回调函数一会儿执行不完，会导致卡顿而不使滚动条滚动，
+        加上passive，会先使事件的默认行为先执行再去执行回调函数
+        用于移动端 -->
+        <ul class="list" @wheel="demo1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            methods:{
+                showInfo(e){
+                    // alert('你点击了此处1')
+                    console.log(e.target);
+                },
+                showMsg(n){
+                    console.log(n);
+                },
+                demo1(){
+                    for(let i = 0; i < 10000; i++){
+                        console.log("@");
+                    }
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

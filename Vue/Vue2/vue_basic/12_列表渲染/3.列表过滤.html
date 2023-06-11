@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        输入关键词进行搜索：<input type="text" v-model="keyWord">
+        <ul>
+            <li v-for="p in filPersons" :key="p.id">
+                {{p.id}}-{{p.name}}-{{p.gender}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        //使用watch实现
+        //#region
+        // new Vue({
+        //     el:'#root',
+        //     data:{
+        //         keyWord:'',
+        //         persons:[
+        //             {id: '1', name: '周冬雨', gender: '女'},
+        //             {id: '2', name: '马冬梅', gender: '女'},
+        //             {id: '3', name: '周杰伦', gender: '男'},
+        //             {id: '4', name: '温兆伦', gender: '男'}
+        //         ],
+        //         filPersons:[]
+        //     },
+        //     watch:{
+        //         keyWord:{
+        //             immediate:true,
+        //             handler(val){
+        //                 this.filPersons = this.persons.filter((p)=>{
+        //                     return p.name.indexOf(val) != -1
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
+        //#endregion
+
+        
+        //使用computed实现
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id: '1', name: '周冬雨', gender: '女'},
+                    {id: '2', name: '马冬梅', gender: '女'},
+                    {id: '3', name: '周杰伦', gender: '男'},
+                    {id: '4', name: '温兆伦', gender: '男'}
+                ]
+            },
+            computed:{
+                filPersons(){
+                    return this.persons.filter((p)=>{
+
+                        return p.name.indexOf(this.keyWord) !== -1
+
+                    })
+                }
+            }
+        })
+   </script>
+</body>
+</html>

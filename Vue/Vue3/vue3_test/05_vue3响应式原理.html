@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3响应式原理</title>
+</head>
+
+<body>
+    <hr>
+    <hr>
+    <script>
+        // 源教程
+        let person = {
+            name: '和珅',
+            age: 56
+        };
+        //Vue2响应式原理 无法捕获新增的属性以及被删除的属性
+        //#region 
+        /* let p = {};
+        Object.defineProperty(p , 'name', {
+            //
+            configurable: true,
+            get(){  //有人读取name时调用
+                return person.name
+            },
+            set(val){   //有人修改name时调用
+                console.log("有人修改了name属性，我发现了，我要求去更新界面！");
+                person.name = val
+            }
+        });
+        Object.defineProperty(p , 'age', {
+            get(){  //有人读取age时调用
+                return person.age
+            },
+            set(val){   //有人修改age时调用
+                console.log("有人修改了age属性，我发现了，我要求去更新界面！");
+                person.age = val
+            }
+        })*/
+        //#endregion
+        // 模拟Vue3中实现响应式
+        // const p = new Proxy(person, {
+            //因为要捕获值的修改，所以写上get/set/deleteProperty
+
+            //获取属性
+        //     get(target, propName) {
+        //         console.log(target, propName);
+        //         console.log(`有人读取了${propName}属性`);
+        //         //基本功：propName是形参，不可以使用target.propName来读取，.后面表示的是一个字符串。需要使用target[propName]读取
+        //         return target[propName];
+        //     },
+        //     //修改属性,不仅仅是修改，同样，追加也适用
+        //     set(target, propName, value) {
+        //         console.log(`有人修改额p身上的${propName}属性，我要去更新界面了！`);
+        //         target[propName] = value;
+        //     },
+        //     //删除属性
+        //     deleteProperty(target, propName) {
+        //         console.log(`有人删除了p身上的${propName}属性，我要去更新界面了`);
+        //         return delete target[propName];
+        //     }
+        // });
+        // const obj = {
+        //     a: 1,
+        //     b: 2,
+        // }
+        //通过Object.defineProperty操作
+        // try{
+        //     Object.defineProperty(obj, 'c', {
+        //         get(){
+        //             return 3
+        //         }
+        //     })
+        // }catch{
+        //     Object.defineProperty(obj, 'c', {
+        //         get(){
+        //             return 4
+        //         }
+        //     })
+        // }
+        //通过Reflect.defineProperty操作
+        // const x1 = Reflect.defineProperty(obj, 'c', {
+        //     get(){
+        //         return 3
+        //     }
+        // });
+        // const x2 = Reflect.defineProperty(obj, 'c', {
+        //     get(){
+        //         return 4
+        //     }
+        // })
+        // if(x2){
+        //     console.log("x2操作成功了");
+        // }else{
+        //     console.log("x2操作失败了");
+        // }
+        // console.log("Vue3学习ing");
+
+
+           // Vue3中实现响应式雏形
+           //Proxy代理对象
+           //Reflect反射对象
+           const p = new Proxy(person, {
+            //因为要捕获值的修改，所以写上get/set/deleteProperty
+            //获取属性
+            get(target, propName) {
+                console.log(target, propName);
+                console.log(`有人读取了${propName}属性`);
+                //基本功：propName是形参，不可以使用target.propName来读取，.后面表示的是一个字符串。需要使用target[propName]读取
+                return Reflect.get(target, propName);
+            },
+            //修改属性,不仅仅是修改，同样，追加也适用
+            set(target, propName, value) {
+                console.log(`有人修改额p身上的${propName}属性，我要去更新界面了！`);
+                Reflect.set(target, propName, value);
+            },
+            //删除属性
+            deleteProperty(target, propName) {
+                console.log(`有人删除了p身上的${propName}属性，我要去更新界面了`);
+                return Reflect.deleteProperty(target, propName,) ;
+            }
+        });
+    </script>
+</body>
+
+</html>

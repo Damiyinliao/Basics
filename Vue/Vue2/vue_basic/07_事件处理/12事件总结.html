@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件总结</title>
+    <script src="../vue.js"></script>
+    <style>
+        .demo1{
+            width: 100px;
+            height: 200px;
+            background-color: yellow;
+        }
+        .btn1{
+            margin: 30px auto;
+            font-size: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="demo1" @click="showInfo">
+            <!--  -->
+            <button class="btn1" @click="showInfo">点击事件查看冒泡</button>
+            <!-- 使用 stop prevent 可以一起阻止冒泡事件和默认事件 -->
+            <!-- 修饰符可以连写 -->
+            <a href="http://www.jd.com" @click.prevent.stop="showInfo">跳转到京东页面</a>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+
+            },
+            methods:{
+                showInfo(){
+                    alert('恭喜！')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

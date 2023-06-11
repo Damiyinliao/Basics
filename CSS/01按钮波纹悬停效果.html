@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap">
+    <title>按钮波纹悬停效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .btn{
+            position: relative;
+            padding: 20px 30px;
+            font-size: 20px;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background-image: linear-gradient(rgb(43,190,96),rgb(15,157,88));
+            color: #000;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: .5s;
+        }
+        .btn:hover{
+            color: #fff;
+            text-decoration: underline;
+        }
+        .btn::before{
+            content: "";
+            position: absolute;
+            left: var(--xPos);
+            top: var(--yPos);
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background-color: #000;
+            border-radius: 50%;
+            transition: width 0.5s, height 0.5s;
+        }
+        .btn:hover::before{
+            width: 400px;
+            height: 400px;
+        }
+        .btn span{
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="btn"><span>Hover Me</span></a>
+    <script>
+        var btn = document.querySelector('.btn');
+        btn.addEventListener('mouseover', (event)=>{
+            const x = (event.pageX - btn.offsetLeft);
+            const y = (event.pageY - btn.offsetTop);
+
+            btn.style.setProperty("--xPos", x + "px");
+            btn.style.setProperty("--yPos", y + "px");
+        })
+    </script>
+</body>
+</html>
