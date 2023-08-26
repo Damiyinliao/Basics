@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .title {
+      background-color: aquamarine;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <!-- 表示为JSX -->
+  <script type="text/babel">
+
+    const myName = 'HeWei';
+    const myId = 'myId';
+    // 创建虚拟DOM
+    const VDOM = (
+      <div>
+          <h1 className="title" id={myId}>
+            <span style={{color: 'white', fontSize: '30px'}}>{myName.toLowerCase()}</span>
+          </h1>
+          <input type="text" />
+      </div>
+
+    )
+    /**
+     * JSX语法规则：
+     * 1.定义虚拟DOM时，不要写引号。
+     * 2.标签中混入JS表达式时要用{}。
+     * 3.样式的类名指定不要用class，要用className。
+     * 4.只有一个根标签
+     * 5.标签必须闭合
+     * 6.标签首字母
+     *  (1).若小写字母开头，则将该标签转为html中同名字母，若html中无该标签对应的同名元素，则报错。
+     *  (2).若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错。
+    */
+    // 渲染虚拟DOM到页面
+    ReactDOM.render(VDOM, document.getElementById('root'))
+  </script>
+</body>
+</html>
+

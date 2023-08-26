@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  .list {
+    width: 200px;
+    height: 300px;
+    background-color: #bc9f9f;
+    overflow: auto;
+  }
+  .news {
+    height: 30px;
+  }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+    class News extends React.Component {
+      state = { newArr: [] }
+
+      componentDidMount() {
+        setInterval(() => {
+          // 获取原状态
+          const { newArr } = this.state
+          // 模拟新闻
+          const news = '新闻' + (newArr.length + 1)
+          // 更新状态
+          this.setState({ newArr: [news, ...newArr] })
+        }, 1000)
+      }
+
+      getSnapshotBeforeUpdate() {
+        // 获取原状态
+        const { scrollHeight, scrollTop, clientHeight } = this.refs.list
+        // 返回一个对象，对象中的属性会作为componentDidUpdate的第三个参数
+        return this.refs.list.scrollHeight
+      }
+
+      componentDidUpdate(prevProps, prevState, prevScrollHeight) {
+        // 获取新状态
+        const { scrollHeight, scrollTop, clientHeight } = this.refs.list
+        // 滚动条位置
+        this.refs.list.scrollTop = scrollTop + (scrollHeight - prevScrollHeight)
+      }
+
+      render() {
+        return (
+          <div className='list' ref='list'>
+            {
+              this.state.newArr.map((item, index) => {
+                return <div className='news' key={index}>{item}</div>
+              })
+            }
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<News />, document.getElementById('root'))
+  </script>
+</body>
+</html>

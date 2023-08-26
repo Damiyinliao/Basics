@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React-Learn</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+
+    class Demo extends React.Component {
+
+      state = { isHot: true}
+
+      changeWeather = () => {
+        const { isHot } = this.state
+        this.setState({ isHot: !isHot })
+      }
+
+      showValue = () => {
+        const { input1 } = this
+        alert(input1.value)
+      }
+
+      getCurrentNode = (currentNode) => {
+        this.input1 = currentNode
+        console.log('@', currentNode)
+      }
+
+      render() {
+        const { isHot } = this.state
+        return (
+          <div>
+            <h3>今天天气是{ isHot ? '炎热' : '凉爽' }</h3>
+            {/*内联样式的ref回调，ref回调函数会执行两次，第一次执行传入空值进行数据清空，第二执行才会传入当前DOM节点*/}
+            {/*<input type="text" ref={(currentNode) => { this.input1 = currentNode; console.log('@', currentNode) } }/>*/}
+            {/*可直接将传入ref的回调函数写在ref={}中(内绑定)，这种形式在页面更新时将不会被执行两次*/}
+            <input type="text" ref={this.getCurrentNode }/>
+            <br/>
+            <br/>
+            <button onClick={this.showValue}>展示数值</button>
+            <button onClick={this.changeWeather}>切换天气状态</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('root'))
+  </script>
+</body>
+</html>

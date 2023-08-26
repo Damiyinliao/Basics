@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+    class Login extends React.Component {
+      handleSubmit = (event) => {
+        event.preventDefault()
+        const { username, password } = this
+        alert(`你输入的名字是${username.value}，密码是${password.value}`)
+      }
+
+      render() {
+        return (
+          <form action="#" onSubmit={this.handleSubmit}>
+            用户名:<input ref={c => this.username = c} type="text" name="username" />
+            密码:<input ref={c => this.password = c} type="password" name="password" />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(<Login />, document.getElementById('root'))
+  </script>
+</body>
+</html>

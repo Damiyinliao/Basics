@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数式组件</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <!-- 表示为JSX -->
+  <script type="text/babel">
+    // 函数式组件 Demo是一个组件
+    const Demo = () => {
+      console.log(this)  //此处的this是undefined，因为babel编译后开启了严格模式
+      return <h1>哈哈哈哈哈</h1>
+    }
+    ReactDOM.render(<Demo />, document.getElementById('root'))
+    /**
+     * 执行了ReactDOM.render(<Demo />, document.getElementById('root'))之后发生了什么
+     * 1. React解析组件标签，找到了Demo组件。
+     * 2. 发现组件是使用函数定义的，随后调用该函数，将返回的虚拟DOM转为真实DOM，随后呈现在页面中
+     */
+  </script>
+</body>
+</html>

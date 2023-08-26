@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <!-- 表示为JSX -->
+  <script type="text/babel">
+    // 创建虚拟DOM
+    const VDOM = (
+      <h1 id="title">
+        <span>hello, react</span>
+      </h1>
+    )
+    // 渲染虚拟DOM到页面
+    ReactDOM.render(VDOM, document.getElementById('root'))
+  </script>
+</body>
+</html>

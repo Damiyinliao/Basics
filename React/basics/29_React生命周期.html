@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+
+    class Life extends React.Component {
+
+      state = { opacity: 1 }
+      //组件挂在之后要执行的操作生命周期钩子，每次更新state，就会执行一次render()函数
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if(opacity < 0) opacity = 1
+          this.setState({opacity})
+        }, 200);
+      }
+      // 组件将要卸载之后执行的生命周期钩子
+      componentWillUnmount() {
+        clearInterval(this.timer)
+      }
+
+      die = () => {
+        // 卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+      }
+
+      render() {
+        console.log('render')
+        return (
+          <div>
+            <h1 style={{opacity: this.state.opacity}}>组件生命周期演示</h1>
+            <button onClick={this.die}>开始</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Life />, document.getElementById('root'))
+  </script>
+</body>
+</html>

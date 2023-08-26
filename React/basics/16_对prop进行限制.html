@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="root1"></div>
+  <div id="root2"></div>
+  <div id="root3"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+
+  <script type="text/babel">
+
+    class Person extends React.Component {
+
+      render() {
+
+        const { name, age, sex } = this.props
+        //this.props.age = age + 1 //不可以修改props中的值，因为props是只读的
+
+        return (
+          <ul>
+            <li>姓名：{ this.props.name }</li>
+            <li>性别：{ this.props.sex }</li>
+            <li>年龄：{ this.props.age }</li>
+          </ul>
+        )
+      }
+    }
+
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,  // name必须为string类型且是必传项
+      age: PropTypes.number, // age为number类型
+      speak: PropTypes.func, // speak为function类型
+    }
+
+    Person.defaultProps = {
+      sex: '变形者',
+      age: 18
+    }
+    const speak = () => {
+      console.log('我是一个函数')
+    }
+    //                                  不传入给props所需的age和sex参数，会使用defaultProps中的默认值
+    ReactDOM.render(<Person name="weiwei" />, document.getElementById('root'))
+    // 传入给props                                 //age必须为number类型，表达式为age={23}，不可以age="23"
+    ReactDOM.render(<Person name="hewei" sex="男" age={22} />, document.getElementById('root1'))
+    const p = { name: 'lili', sex: '女', age: 21 }
+    // react + babel形成的特殊语法，允许可以...p，进而遍历对象
+    ReactDOM.render(<Person { ...p } />, document.getElementById('root2'))
+    // 传入function
+    ReactDOM.render(<Person name="weiwei" speak={speak} />, document.getElementById('root3'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>createRef</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+
+    class Demo extends React.Component {
+
+      firstRef = React.createRef() // 专人专用，一个ref容器对应一个dom节点的ref
+      secondRef = React.createRef() // 第二个Ref容器
+
+      showValue1 = () => {
+        console.log('Ref容器', this.firstRef.current) //Expected: Ref容器 <input type=​"text">​
+        const { current } = this.firstRef
+        // alert(current.value)
+      }
+
+      showValue2 = () => {
+        const { current } = this.secondRef
+        alert(current.value)
+      }
+
+      render() {
+        return (
+          <div>
+            <input type="text" ref={this.firstRef }/>
+            <button onClick={this.showValue1}>展示数值</button>
+            <br/>
+            <input type="text" ref={this.secondRef} onBlur={this.showValue2} />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo />, document.getElementById('root'))
+   </script>
+</body>
+</html>

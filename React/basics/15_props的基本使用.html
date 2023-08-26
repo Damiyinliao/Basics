@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <script type="text/babel">
+
+    class Person extends React.Component {
+
+      render() {
+        console.log("组件实例信息", this)
+        return (
+          <ul>
+            <li>姓名：{ this.props.name }</li>
+            <li>性别：{ this.props.sex }</li>
+            <li>年龄：{ this.props.age }</li>
+          </ul>
+        )
+      }
+    }
+
+    // 传入给props
+    ReactDOM.render(<Person name="hewei" sex="男" age="23" />, document.getElementById('root'))
+    const p = { name: 'lili', sex: '女', age: 21 }
+    // react + babel形成的特殊语法，允许可以...p，进而遍历对象
+    ReactDOM.render(<Person { ...p } />, document.getElementById('root'))
+  </script>
+</body>
+</html>

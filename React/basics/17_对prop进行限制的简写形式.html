@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+
+  <script type="text/babel">
+
+    class Person extends React.Component {
+      // 写不写构造器意义不大，因为React会自动调用构造器
+      // 用不用构造器，取决于是否需要在构造器中初始化state，需不需要给方法绑定this（最直接的方法就是写箭头函数，可以在函数内访问到类实例的this），或者还需不需要通过this访问到props，直接访问props也是可以的
+      constructor(props) {
+        super(props)
+        console.log(props)
+      }
+
+      // 对标签属性进行限制、必要性的限制、默认值的限制
+      static propTypes = {
+        name: PropTypes.string.isRequired,  // name必须为string类型且是必传项
+        age: PropTypes.number, // age为number类型
+        speak: PropTypes.func, // speak为function类型
+      }
+      // 设置默认值
+      static defaultProps = {
+        sex: '变形者',
+        age: 18
+      }
+
+
+
+      render() {
+
+        const { name, age, sex } = this.props
+        // this.props.age = age + 1 //不可以修改props中的值，因为props是只读的
+
+        return (
+          <ul>
+            <li>姓名：{ this.props.name }</li>
+            <li>性别：{ this.props.sex }</li>
+            <li>年龄：{ this.props.age }</li>
+          </ul>
+        )
+      }
+    }
+
+
+    const speak = () => {
+      console.log('我是一个函数')
+    }
+
+    // 传入function
+    ReactDOM.render(<Person name="weiwei" speak={speak} />, document.getElementById('root'))
+  </script>
+</body>
+</html>

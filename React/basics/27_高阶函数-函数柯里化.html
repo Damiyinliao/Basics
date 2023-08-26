@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+
+    /**
+     * 高阶函数——函数柯里化:
+     * 如果一个函数的返回值是一个新的函数，那么这个函数就是高阶函数
+     * 如果一个函数接收的参数是一个函数，那么这个函数就是高阶函数
+     * 常见的有：Promise、setTimeout、arr.map、arr.filter、arr.reduce、arr.sort、bind、form表单的onSubmit、onChange等
+    */
+
+    class Login extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+
+      saveData = (dataType) => {
+        return (event) => {
+          console.log(event.target.name)
+          this.setState({ [dataType]: event.target.value })
+        }
+      }
+
+      handleSubmit = (event) => {
+        event.preventDefault()
+        const { username, password } = this.state
+        alert(`你输入的名字是${username}，密码是${password}`)
+      }
+
+      render() {
+        return (
+          <form action="#" onSubmit={this.handleSubmit}>
+            用户名:<input onChange={this.saveData} type="text" name="username" />
+            密码:<input onChange={this.saveData} type="password" name="password" />
+            <button>登录</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(<Login />, document.getElementById('root'))
+  </script>
+</body>
+</html>

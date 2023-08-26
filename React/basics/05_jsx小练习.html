@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <!-- 表示为JSX -->
+  <script type="text/babel">
+
+    const data = ['Vue', 'JavaScript', 'React']
+
+    /**
+     * {}中必须是表达式，不能是语句
+     *
+     * @description 什么是表达式
+     * 1.一个变量 a
+     * 2.a+b
+     * 3.fn(1) 会返回一些东西
+     * 4.arr.map()
+     *
+     * @description 什么是语句
+     *
+     */
+
+
+    // 创建虚拟DOM
+    const VDOM = (
+      <div>
+        <ul>
+          { data.map((item, index) => {
+            return <li key={index}>{item}</li>
+          }) }
+        </ul>
+      </div>
+
+    )
+    // 渲染虚拟DOM到页面
+    ReactDOM.render(VDOM, document.getElementById('root'))
+  </script>
+</body>
+</html>

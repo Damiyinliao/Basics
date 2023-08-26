@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+
+  <script type="text/babel">
+    class Weather extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = { isHot: false }
+      }
+      render() {
+        console.log(this)
+        const { isHot } = this.state
+        return <h1 onClick={demo}>今天天气很{ isHot ? '炎热' : '凉爽' }</h1>
+      }
+    }
+
+    function demo() {
+      console.log("点击事件")
+    }
+
+    ReactDOM.render(<Weather />, document.getElementById('root'))
+  </script>
+</body>
+</html>

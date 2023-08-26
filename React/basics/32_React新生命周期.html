@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 引入react核心库和react-dom用于操作dom -->
+  <script src="../react/unpkg.com_react@18.2.0_umd_react.development.js"></script>
+  <script src="../react/unpkg.com_react-dom@18.2.0_umd_react-dom.development.js"></script>
+  <!-- 引入babel，用于将JSX转为JS -->
+  <script src="../react/unpkg.com_@babel_standalone@7.22.9_babel.min.js"></script>
+  <!-- 引入prop-types对React传参进行限制 -->
+  <script src="../react/unpkg.com_prop-types@15.6.2_prop-types.js"></script>
+  <script type="text/babel">
+    class Life extends React.Component {
+      state = { count: 1 }
+
+      // 组件挂载后
+      componentDidMount() {
+        console.log('Count---componentDidMount')
+      }
+
+      unmountLife = () => {
+         // 卸载组件
+         ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+      }
+      // 控制组件更新的阀门，不写即默认返回true，写了如需更新组件必须返回true
+      shouldComponentUpdate() {
+        console.log('Count---shouldComponentUpdate')
+        // return false
+        return true
+      }
+
+
+
+      changeCount = () => {
+        this.setState({ count: this.state.count + 1 })
+      }
+      // 组件将要卸载
+      componentWillUnmount() {
+        console.log('Count---componentWillUnmount')
+      }
+      forceUpdateLife = () => {
+        this.forceUpdate()
+      }
+
+      // 用于将props映射到state，state的值会随着props的改变而改变，那么就可以在这个钩子函数中进行处理
+      static getDerivedStateFromProps(props) {
+        console.log('Count---getDerivedStateFromProps')
+        // return props
+        return null // 返回null，表示不对state进行任何改变
+      }
+
+      getSnapshotBeforeUpdate() {
+        console.log('Count---getSnapshotBeforeUpdate')
+        return '我是getSnapshotBeforeUpdate的返回值'
+      }
+
+       // 更新后 此处的data就是getSnapshotBeforeUpdate的返回值，页面更新后的之前的数据快照
+       componentDidUpdate(preProps, preState, data) {
+        console.log('Count---componentDidUpdate', preProps, preState, data)
+      }
+
+      render() {
+        console.log('Count---render')
+        const { count } = this.state
+        return (
+          <div>
+            <h1>{ count }</h1>
+            <button onClick={this.changeCount}>改变+1</button>
+            <button onClick={this.unmountLife}>卸载</button>
+            <button onClick={this.forceUpdateLife}>强制更新组件</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Life count={199} />, document.getElementById('root'))
+  </script>
+</body>
+</html>
